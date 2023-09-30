@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="5.665" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="To validate the homepage of Amazon.in" name="user handles the table" time="5.206">
+<system-out><![CDATA[
+Given user iterates the colun values........................................passed
+]]></system-out>
+</testcase>
+</testsuite>
