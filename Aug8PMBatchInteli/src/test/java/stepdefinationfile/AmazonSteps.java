@@ -8,6 +8,7 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.tr.Ama;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +22,7 @@ import resuable.BaseCode;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class AmazonSteps extends BaseCode {
 
@@ -88,15 +90,25 @@ public class AmazonSteps extends BaseCode {
         WebElement signInElement = driver.findElement(By.id("nav-link-accountList-nav-line-1"));
         Actions a = new Actions(driver);
         a.clickAndHold(signInElement).build().perform();
-        driver.findElement(By.linkText("Baby Wishlist")).click();
-      //  driver.findElement(By.partialLinkText("aby Wish")).click();
+       String keyActions = Keys.chord(Keys.CONTROL,Keys.ENTER);
+        driver.findElement(By.linkText("Baby Wishlist")).sendKeys(keyActions);
+
+
 
     }
 
     @Then("verify whether the user naviages to baby wishlist page")
     public void verifyWhetherTheUserNaviagesToBabyWishlistPage() {
 
-        Assert.assertEquals(": Baby Wish List",driver.getTitle());
+       Set<String> winPro = driver.getWindowHandles();
+       for(String a:winPro){
+           driver.switchTo().window(a);
+           if(driver.getTitle().equals("")){
+               break;
+           }
+       }
+
+        Assert.assertEquals("Amazon: Baby Wish List",driver.getTitle());
         if(driver.getTitle().equals(": Baby Wish List")){
 
             Assert.assertTrue(true);
@@ -105,6 +117,8 @@ public class AmazonSteps extends BaseCode {
 
             Assert.assertTrue(false);
         }
+
+        driver.switchTo().defaultContent();
     }
 
     @Given("user iterates the colun values")
