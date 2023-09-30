@@ -43,6 +43,10 @@ Feature: To validate the homepage of Amazon.in
   Scenario: user handles the table
     Given user iterates the colun values
 
+    @dragdrop
+  Scenario: Drag and Drop
+    Given drag and drop the element
+
 
 
 

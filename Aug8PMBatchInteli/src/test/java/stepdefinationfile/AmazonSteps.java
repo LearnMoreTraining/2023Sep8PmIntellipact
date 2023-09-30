@@ -163,4 +163,13 @@ public class AmazonSteps extends BaseCode {
 
 
     }
+
+    @Given("drag and drop the element")
+    public void dragAndDropTheElement() {
+
+        Actions d = new Actions(driver);
+        WebElement source = driver.findElement(By.id("draggable"));
+        WebElement target = driver.findElement(By.id("droppable"));
+        d.dragAndDrop(source,target).build().perform();
+    }
 }
